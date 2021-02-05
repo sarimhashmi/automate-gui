@@ -148,10 +148,10 @@ def goto_page_1():
         # page2.forget()
 
 
-
 def set_text(num:int):
     global feet_force
-    feet_force = feet_force*10 + num 
+    feet_force = feet_force*10 + num
+    feet_force_diasplay.config(text="{}".format(feet_force)) 
     print(feet_force)
 
 def clear():
@@ -170,7 +170,7 @@ page2 = tk.Frame(root)
 
 heading_pg1 = tk.Label(page1,text = "Enter Feet Force:")
 heading_pg1.grid(row=1,column=0)
-tk.Label(page1, text=eval("show_feet_force"+"()")).grid(row=1,column=3)
+feet_force_diasplay = tk.Label(page1, text="0").grid(row=1,column=3)
 
 tk.Button(page1, text="1", command=lambda: set_text(1),height=1, width=7).grid(row=5, column=0)
 tk.Button(page1, text="2", command=lambda: set_text(2),height=1, width=7).grid(row=5, column=1)
