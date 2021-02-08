@@ -132,12 +132,18 @@ def set_text(num:int):
 def clear():
     global feet_force
     feet_force=0
+    feet_force_diasplay = tk.Label(page1, text="0").grid(row=1,column=3)
+
 
 def show_feet_force():
     global feet_force
     return feet_force
 
+def stop():
+    root.destroy()
+
 root = tk.Tk()
+root.geometry('350x200')
 root.title("welding")
 
 page1 = tk.Frame(root)
@@ -145,7 +151,7 @@ page2 = tk.Frame(root)
 
 heading_pg1 = tk.Label(page1,text = "Enter Feet Force:")
 heading_pg1.grid(row=1,column=0)
-feet_force_diasplay = tk.Label(page1, text=feet_force).grid(row=1,column=3)
+feet_force_diasplay = tk.Label(page1, text=feet_force if feet_force !=0 else "0").grid(row=1,column=3)
 
 tk.Button(page1, text="1", command=lambda: set_text(1),height=1, width=7).grid(row=5, column=0)
 tk.Button(page1, text="2", command=lambda: set_text(2),height=1, width=7).grid(row=5, column=1)
@@ -164,11 +170,15 @@ button_to_page2.grid(row=10, column=1)
 
 page1.pack(expand=1,fill="both")
 
-heading_pg2 = tk.Label(page2,text = "this is page 2")
-heading_pg2.pack(pady=20)
+######################### PAGE 2 ################################
 
-button_to_page1 = tk.Button(page2, text="page 1",command=goto_page_1)
-button_to_page1.pack(pady=10)
+heading_pg2 = tk.Label(page2,text = "this is page 2")
+heading_pg2.grid(row=0, column=0)
+
+
+tk.Button(page2, text="page 1",command=goto_page_1,height=1, width=7).grid(row=1,column=0)
+tk.Button(page2,text="STOP",bg="red",command=stop, height=2, width=7).grid(row=2,column=1)
+
 
 # page2.pack(expand=1,fill="both")
 page2.forget()
