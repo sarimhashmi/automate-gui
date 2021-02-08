@@ -2,9 +2,7 @@ import tkinter as tk
 from tkinter import ttk 
 feet_force=0
 '''
-
 LARGEFONT =("Verdana", 35) 
-
 class tkinterApp(tk.Tk): 
     
     # __init__ function for class tkinterApp 
@@ -16,36 +14,26 @@ class tkinterApp(tk.Tk):
         # creating a container 
         container = tk.Frame(self) 
         container.pack(side = "top", fill = "both", expand = True) 
-
         container.grid_rowconfigure(0, weight = 1) 
         container.grid_columnconfigure(0, weight = 1) 
-
         # initializing frames to an empty array 
         self.frames = {} 
-
         # iterating through a tuple consisting 
         # of the different page layouts 
         for F in (StartPage, Page1, Page2): 
-
             frame = F(container, self) 
-
             # initializing frame of that object from 
             # startpage, page1, page2 respectively with 
             # for loop 
             self.frames[F] = frame 
-
             frame.grid(row = 0, column = 0, sticky ="nsew") 
-
         self.show_frame(StartPage) 
-
     # to display the current frame passed as 
     # parameter 
     def show_frame(self, cont): 
         frame = self.frames[cont] 
         frame.tkraise() 
-
 # first window frame startpage 
-
 class StartPage(tk.Frame): 
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent) 
@@ -56,14 +44,12 @@ class StartPage(tk.Frame):
         # putting the grid in its place by using 
         # grid 
         label.grid(row = 0, column = 4, padx = 10, pady = 10) 
-
         button1 = ttk.Button(self, text ="Page 1", 
         command = lambda : controller.show_frame(Page1)) 
     
         # putting the button in its place by 
         # using grid 
         button1.grid(row = 1, column = 1, padx = 10, pady = 10) 
-
         ## button to show frame 2 with text layout2 
         button2 = ttk.Button(self, text ="Page 2", 
         command = lambda : controller.show_frame(Page2)) 
@@ -71,10 +57,7 @@ class StartPage(tk.Frame):
         # putting the button in its place by 
         # using grid 
         button2.grid(row = 2, column = 1, padx = 10, pady = 10) 
-
         
-
-
 # second window frame page1 
 class Page1(tk.Frame): 
     
@@ -83,7 +66,6 @@ class Page1(tk.Frame):
         tk.Frame.__init__(self, parent) 
         label = ttk.Label(self, text ="Page 1", font = LARGEFONT) 
         label.grid(row = 0, column = 4, padx = 10, pady = 10) 
-
         # button to show frame 2 with text 
         # layout2 
         button1 = ttk.Button(self, text ="StartPage", 
@@ -92,7 +74,6 @@ class Page1(tk.Frame):
         # putting the button in its place 
         # by using grid 
         button1.grid(row = 1, column = 1, padx = 10, pady = 10) 
-
         # button to show frame 2 with text 
         # layout2 
         button2 = ttk.Button(self, text ="Page 2", 
@@ -101,17 +82,12 @@ class Page1(tk.Frame):
         # putting the button in its place by 
         # using grid 
         button2.grid(row = 2, column = 1, padx = 10, pady = 10) 
-
-
-
-
 # third window frame page2 
 class Page2(tk.Frame): 
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent) 
         label = ttk.Label(self, text ="Page 2", font = LARGEFONT) 
         label.grid(row = 0, column = 4, padx = 10, pady = 10) 
-
         # button to show frame 2 with text 
         # layout2 
         button1 = ttk.Button(self, text ="Page 1", 
@@ -120,7 +96,6 @@ class Page2(tk.Frame):
         # putting the button in its place by 
         # using grid 
         button1.grid(row = 1, column = 1, padx = 10, pady = 10) 
-
         # button to show frame 3 with text 
         # layout3 
         button2 = ttk.Button(self, text ="Startpage", 
@@ -129,8 +104,6 @@ class Page2(tk.Frame):
         # putting the button in its place by 
         # using grid 
         button2.grid(row = 2, column = 1, padx = 10, pady = 10) 
-
-
 # Driver Code 
 app = tkinterApp() 
 app.mainloop() 
@@ -151,7 +124,9 @@ def goto_page_1():
 def set_text(num:int):
     global feet_force
     feet_force = feet_force*10 + num
-    feet_force_diasplay.config(text="{}".format(feet_force)) 
+    #feet_force_diasplay.config(text="{}".format(feet_force)) 
+    feet_force_diasplay = tk.Label(page1, text=feet_force).grid(row=1,column=3)
+
     print(feet_force)
 
 def clear():
@@ -170,7 +145,7 @@ page2 = tk.Frame(root)
 
 heading_pg1 = tk.Label(page1,text = "Enter Feet Force:")
 heading_pg1.grid(row=1,column=0)
-feet_force_diasplay = tk.Label(page1, text="0").grid(row=1,column=3)
+feet_force_diasplay = tk.Label(page1, text=feet_force).grid(row=1,column=3)
 
 tk.Button(page1, text="1", command=lambda: set_text(1),height=1, width=7).grid(row=5, column=0)
 tk.Button(page1, text="2", command=lambda: set_text(2),height=1, width=7).grid(row=5, column=1)
