@@ -1,8 +1,29 @@
 import tkinter as tk 
 from tkinter import ttk 
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 feet_force=0
 
 LARGEFONT =("Verdana", 35) 
+
+time = [1,2,3,4,5,6,7,8]
+feet = [5,5,5,5,5.1,5.6,5.7,60]
+
+# plot
+def plot(feet = [5,5,5,5,5.1,5.6,5.7,60]):
+    fig = Figure(figsize=(3,3), dpi=200)
+    plot1 = fig.add_subplot(111)
+    plot1.plot(feet)
+
+    canvas = FigureCanvasTkAgg(fig, master=page2)
+    canvas.draw()
+    # canvas.get_tk_widget().grid(row=2, column=0)
+    canvas.get_tk_widget().pack()
+
+    toolbar = NavigationToolbar2Tk(canvas,page2)
+    toolbar.update()
+    # canvas.get_tk_widget().grid(row=2, column=0)
+    canvas.get_tk_widget().pack()
 
 # to go to page 2 from anywhere 
 def goto_page_2():
@@ -44,7 +65,7 @@ def stop():
 
 ############################## MAIN WINDOW ##########################
 root = tk.Tk()
-root.geometry('350x200')
+# root.geometry('350x200')
 root.title("welding")
 
 page1 = tk.Frame(root)
@@ -78,15 +99,35 @@ page1.pack(expand=1,fill="both")
 
 ############# PAGE 2 ################
 
-heading_pg2 = tk.Label(page2,text = "this is page 2")
-heading_pg2.grid(row=0, column=0)
+heading_pg2 = tk.Label(page2,text = "GRAPH")
+# heading_pg2.grid(row=0, column=0)
+heading_pg2.pack()
+
+# graph vaala part
+plot()
+'''
+fig = Figure(figsize=(5,5), dpi=200)
+plot1 = fig.add_subplot(111)
+plot1.plot(feet)
+
+canvas = FigureCanvasTkAgg(fig, master=page2)
+canvas.draw()
+# canvas.get_tk_widget().grid(row=2, column=0)
+canvas.get_tk_widget().pack()
+
+toolbar = NavigationToolbar2Tk(canvas,page2)
+toolbar.update()
+# canvas.get_tk_widget().grid(row=2, column=0)
+canvas.get_tk_widget().pack()
+'''
 
 # button to go back to page 1 (might delete later)
-tk.Button(page2, text="page 1",command=goto_page_1,height=1, width=7).grid(row=1,column=0)
+# tk.Button(page2, text="page 1",command=goto_page_1,height=1, width=7).grid(row=1,column=0)
+tk.Button(page2, text="<- Back",command=goto_page_1,height=1, width=7).pack()
 
 # button to end process
-tk.Button(page2,text="STOP",bg="red",command=stop, height=2, width=7).grid(row=2,column=1)
-
+# tk.Button(page2,text="STOP",bg="red",command=stop, height=2, width=7).grid(row=2,column=1)
+tk.Button(page2,text="STOP",bg="red",command=stop, height=2, width=7).pack()
 
 page2.forget()
 
