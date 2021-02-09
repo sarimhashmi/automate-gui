@@ -105,21 +105,6 @@ heading_pg2.pack()
 
 # graph vaala part
 plot()
-'''
-fig = Figure(figsize=(5,5), dpi=200)
-plot1 = fig.add_subplot(111)
-plot1.plot(feet)
-
-canvas = FigureCanvasTkAgg(fig, master=page2)
-canvas.draw()
-# canvas.get_tk_widget().grid(row=2, column=0)
-canvas.get_tk_widget().pack()
-
-toolbar = NavigationToolbar2Tk(canvas,page2)
-toolbar.update()
-# canvas.get_tk_widget().grid(row=2, column=0)
-canvas.get_tk_widget().pack()
-'''
 
 # button to go back to page 1 (might delete later)
 # tk.Button(page2, text="page 1",command=goto_page_1,height=1, width=7).grid(row=1,column=0)
